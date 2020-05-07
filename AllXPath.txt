@@ -1,0 +1,57 @@
+async function test() {
+    let steps = [{ _id: '1', action: "1", arg1: "http://webdriveruniversity.com/Contact-Us/contactus.html" },
+        { _id: '2', action: "2", locator: ".//*[@name='first_name']", arg1: "abc" },
+        { _id: '3', action: "2", locator: ".//*[@name='last_name']", arg1: "abc" },
+        { _id: '4', action: "2", locator: ".//*[@name='email']", arg1: "abc@abc.com" },
+        { _id: '5', action: "2", locator: ".//*[@name='message']", arg1: "Enter msg" },
+        { _id: '6', action: "3", locator: ".//*[@type='reset']" },
+        { _id: '7', action: "40", locator: ".//*[@name='first_name']" },
+        { _id: '8', action: "40", locator: ".//*[@name='last_name']" },
+        { _id: '9', action: "40", locator: ".//*[@name='email']" },
+        { _id: '10', action: "40", locator: ".//*[@name='message']" },
+        { _id: '99', action: "0" }
+    ];
+    let steps1 = [{ _id: '1', action: "1", arg1: "http://webdriveruniversity.com/Contact-Us/contactus.html" },
+        { _id: '2', action: "2", locator: ".//*[@name='first_name']", arg1: "abc" },
+        { _id: '3', action: "2", locator: ".//*[@name='last_name']", arg1: "abc" },
+        { _id: '4', action: "2", locator: ".//*[@name='email']", arg1: "abc@abc.com" },
+        { _id: '5', action: "2", locator: ".//*[@name='message']", arg1: "Enter msg" },
+        { _id: '6', action: "3", locator: ".//*[@type='submit']" },
+        { _id: '7', action: "4", arg1: "Gianni Bruno - Designer" },
+        { _id: '9', action: "41", locator: ".//*[@id='contact_reply']/h1", arg1: "Thank You for your Message!" },
+        { _id: '99', action: "0" }
+    ];
+    let steps2 = [{ _id: '1', action: "1", arg1: "http://webdriveruniversity.com/Click-Buttons/index.html" },
+        { _id: '2', action: "3", locator: ".//*[@id='button1']" },
+        { _id: '3', action: "41", locator: ".//*[@id='myModalClick']/div/div/div[1]/h4", arg1: "Congratulations!" },
+        { _id: '4', action: "3", locator: ".//*[@id='myModalClick']/div/div/div[3]/button" },
+        { _id: '99', action: "0" }
+    ];
+    let steps3 = [{ _id: '1', action: "1", arg1: "http://webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html" },
+        { _id: '2', action: "7", locator: ".//*[@id='dropdowm-menu-1']", arg1: "SQL" },
+        { _id: '3', action: "45", locator: ".//*[@id='dropdowm-menu-1']", arg1: "SQL" },
+        { _id: '99', action: "0" }
+    ];
+    let steps4 = [{ _id: '1', action: "1", arg1: "http://webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html" },
+        { _id: '2', action: "44", locator: ".//*[@id='checkboxes']/label[.='Option 1']/input" },
+        { _id: '3', action: "3", locator: ".//*[@id='checkboxes']/label[.='Option 1']/input" },
+        { _id: '4', action: "43", locator: ".//*[@id='checkboxes']/label[.='Option 1']/input" },
+        { _id: '5', action: "44", locator: ".//*[@id='radio-buttons']/input[@value='blue']" },
+        { _id: '6', action: "3", locator: ".//*[@id='radio-buttons']/input[@value='blue']" },
+        { _id: '7', action: "43", locator: ".//*[@id='radio-buttons']/input[@value='blue']" },
+        { _id: '99', action: "0" }
+    ];
+    let steps5 = [{ _id: '1', action: "1", arg1: "http://webdriveruniversity.com/Actions/index.html" },
+        { _id: '2', action: "8", locator: ".//*[@id='draggable']", arg1: ".//*[@id='droppable']" },
+        { _id: '71', action: "9" },
+        { _id: '3', action: "33", locator: ".//*[@id='double-click']" },
+        { _id: '72', action: "9" },
+        { _id: '4', action: "32", locator: ".//*[@id='div-hover']//button[contains(.,'First')]" },
+        { _id: '73', action: "9" },
+        { _id: '5', action: "32", locator: ".//*[@id='div-hover']//button[contains(.,'Second')]" },
+        { _id: '74', action: "9" },
+        { _id: '6', action: "32", locator: ".//*[@id='div-hover']//button[contains(.,'Third')]" },
+        { _id: '7', action: "9" },
+        { _id: '99', action: "0" }
+    ];
+}

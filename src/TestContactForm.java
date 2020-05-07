@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 public class TestContactForm {
 
     WebDriver driver;
+    String url = "http://webdriveruniversity.com/";
+
     @BeforeClass
     void setup() {
 
@@ -21,25 +23,43 @@ public class TestContactForm {
         driver = new ChromeDriver();
 
         // Access the webpage
-        driver.get("http://webdriveruniversity.com/");
+        driver.get(url + "Contact-Us/contactus.html");
+
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
         // click on Contact Us title
-        driver.findElement(By.xpath("//a[@id = 'contact-us']//h1")).click();
+        driver.findElement(By.xpath("//*[@id='contact-us']//h1")).click();
 
-        // verify the title of the newly opened page
+
         String contactUsTitle = driver.getTitle();
         System.out.println(contactUsTitle);
+
+        // verify the title of the newly opened page
+
         //Assert.assertEquals("WebDriver | Contact Us", contactUsTitle);
+
+
+        driver.findElement(By.xpath("//input[@name='first_name']")).sendKeys("Donald");
+        driver.findElement(By.xpath("//*[@id='contact_form']//input[@name='last_name']")).sendKeys("Trump");
+        driver.findElement(By.xpath("//*[@id='contact_form']//input[@name='email']")).sendKeys("dtrump@whitehouse.gov");
+        driver.findElement(By.xpath("//*[@id='contact_form']//textarea[@name='message']")).sendKeys("stay calm and be president");
+
+
+        driver.findElement(By.xpath("//*[@id='form_buttons']//input[@value='SUBMIT']")).click();
+
+        String submitSuccessMessage = driver.findElement(By.xpath("//div[@id='contact_reply']//h1")).getText();
+        Assert.assertEquals("Thank You for your Message!", submitSuccessMessage);
     }
 
     @Test
-    void testContactSubmitButtonCase1(){
+    void testContactSubmitButtonCase1() {
         // TestCase 1: Fill in all valid information and hit Submit
 
-        //[Nguyen] ideally I want to take all of these fields for reusable. How to do it?
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        // [Nguyen] ideally I want to take all of these fields for reusable. How to do it?
 
-        driver.findElement(By.xpath("//*[@id='contact_form']//input[@name='first_name']")).sendKeys("Donald");
+
+        // [Nguyen] Problem catching xpath. Don't understand why
+        driver.findElement(By.name("first_name")).sendKeys("Donald");
         driver.findElement(By.xpath("//*[@id='contact_form']//input[@name='last_name']")).sendKeys("Trump");
         driver.findElement(By.xpath("//*[@id='contact_form']//input[@name='email']")).sendKeys("dtrump@whitehouse.gov");
         driver.findElement(By.xpath("//*[@id='contact_form']//textarea[@name='message']")).sendKeys("stay calm and be president");
@@ -51,11 +71,8 @@ public class TestContactForm {
     }
 
     @Test
-    void testContactSubmitButtonCase2(){
+    void testContactSubmitButtonCase2() {
         // TestCase 2: Leave all field blank and hit Submit
-
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-
         // Click on Submit button with all fields empty
         driver.findElement(By.xpath("//*[@id='form_buttons']//input[@value='SUBMIT']")).click();
         String submitUnsuccessful = driver.getTitle();
@@ -66,8 +83,7 @@ public class TestContactForm {
     }
 
     @Test
-    void testContactResetButton(){
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+    void testContactResetButton() {
 
         // Fill in some information
         driver.findElement(By.xpath("//*[@id='contact_form']//input[@name='first_name']")).sendKeys("Donald");
@@ -79,14 +95,14 @@ public class TestContactForm {
         driver.findElement(By.xpath("//*[@id='form_buttons']//input[@value='RESET']")).click();
 
         // Check if all the text in these fields are empty
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='contact_form']//input[@name='first_name']")).getText().equalsIgnoreCase(""));
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='contact_form']//input[@name='last_name']")).getText().equalsIgnoreCase(""));
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='contact_form']//input[@name='email']")).getText().equalsIgnoreCase(""));
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='contact_form']//textarea[@name='message']")).getText().equalsIgnoreCase(""));
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='contact_form']//input[@name='first_name']")).getText().equals(""));
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='contact_form']//input[@name='last_name']")).getText().equals(""));
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='contact_form']//input[@name='email']")).getText().equals(""));
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='contact_form']//textarea[@name='message']")).getText().equals(""));
     }
 
     @AfterClass
-    void teardown(){
+    void teardown() {
         driver.close();
     }
 }

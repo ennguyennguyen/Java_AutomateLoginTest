@@ -18,8 +18,8 @@ public class TestLoginPortal {
         // Access the webpage
         driver.get("http://webdriveruniversity.com/");
 
-        // click on Contact Us title
-        driver.findElement(By.xpath("//a[@id = 'login-portal']//h1")).click();
+        // click on Login Portal title
+        driver.findElement(By.xpath("//*[@id='login-portal']//h1")).click();
 
         // verify the title of the newly opened page
         String loginPortalTitle = driver.getTitle();
@@ -33,7 +33,9 @@ public class TestLoginPortal {
         driver.findElement(By.id("password")).sendKeys("123");
         driver.findElement(By.id("login-button")).click();
 
-        // need to check the correct username and password for this test
+        // [NGUYEN] need to check the correct username and password for this test
+
+        // [NGUYEN] How to capture pop up windows?
 
     }
 
