@@ -7,6 +7,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class TestToDoList {
     WebDriver driver;
     String url = "http://webdriveruniversity.com/";
@@ -30,19 +32,30 @@ public class TestToDoList {
     // Test case 1: Click on + icon to add more note
     void testAddNewNote(){
 
-        // Click on "+" icon
-        driver.findElement(By.id("plus-icon")).click();
-        // [Nguyen] How to verify the style="display: none;" is not there?
-        //      --> use getAttribute() with style
-        WebElement plusButton = driver.findElement(By.xpath("//*[@id = 'container']//input"));
-        String displayStyle = plusButton.getCssValue("display");
-        System.out.println(displayStyle);
+        // Remove all existing item from the list
+        List<WebElement> itemList = driver.findElements(By.xpath("//*[@id = 'container']//ul"));
+        while (!itemList.isEmpty()){
+            itemList.clear();
+        }
+        System.out.println("List has no items");
 
-        // Next step:
-        // 1. write script to remove all existing item from the list
-        // 2. check when an item is added, the list has element
+        // Check when an item is added, the list has element
+        driver.findElement(By.xpath("//*[@id = 'container']//input")).sendKeys("eat burger");
+        System.out.println("Item added successfully");
+        driver.findElement(By.xpath("//*[@id = 'container']//input")).sendKeys("pick up kids");
+        System.out.println("Item added successfully");
+        driver.findElement(By.xpath("//*[@id = 'container']//input")).sendKeys("clean up house");
+        System.out.println("Item added successfully");
 
+        // Verify the item is added correctly
+        // ***[NGUYEN] after added, the itemList is still empty
+        for (WebElement w : itemList){
+            System.out.println(w.getText());
+        }
 
+        // Verify if the list is not empty because it has new items added
+        Assert.assertTrue(!itemList.isEmpty());
+        System.out.println("List has items");
 
     }
 

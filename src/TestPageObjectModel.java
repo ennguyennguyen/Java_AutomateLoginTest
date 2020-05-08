@@ -27,7 +27,7 @@ public class TestPageObjectModel {
     }
 
     @Test
-    // Write Your test here
+    // TEMPORARILY IGNORE THIS AS HAVE NO KNOWLEDGE
 
 
     @AfterClass
